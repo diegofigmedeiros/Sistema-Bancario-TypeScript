@@ -5,6 +5,7 @@ class ClienteController {
     private inputConta: HTMLInputElement;
     private inputSaldo: HTMLInputElement;
     private clientes: Clientes;
+    private quantClientes: number = 0;
 
     constructor() {
         this.inputNome = <HTMLInputElement>document.querySelector("#nome");
@@ -34,8 +35,25 @@ class ClienteController {
     }
 
     inserirClienteNoHTML(cliente: Cliente) {
-        const elementoP = document.createElement('p');
-        elementoP.textContent = cliente.toString();
+        this.quantClientes++;
+        const tr = document.createElement('tr');
+        const th = document.createElement('th');
+        let tbody = document.querySelector('#tabelinha');
+        let i = 0;
+
+        let array = cliente.toString();
+        console.log(array);
+        console.log(this.quantClientes.toString());
+
+        th.innerHTML = this.quantClientes.toString();
+        tr.append(th);
+        array.forEach(elemento => {
+            let td = document.createElement('td');
+            td.innerHTML = array[i]
+            tr.append(td)
+            i++;
+        })
+
         const botaoApagar = document.createElement('button');
         botaoApagar.textContent = 'X';
         botaoApagar.addEventListener('click',
@@ -45,8 +63,8 @@ class ClienteController {
                 (<Element>event.target).parentElement.remove();
             }
         );
-        elementoP.appendChild(botaoApagar);
-        document.body.appendChild(elementoP);
+        tr.appendChild(botaoApagar);
+        tbody.appendChild(tr);
     }
 
 

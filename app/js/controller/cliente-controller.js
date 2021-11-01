@@ -1,5 +1,6 @@
 class ClienteController {
     constructor() {
+        this.quantClientes = 0;
         this.inputNome = document.querySelector("#nome");
         this.inputCpf = document.querySelector("#cpf");
         this.inputConta = document.querySelector("#conta");
@@ -18,8 +19,22 @@ class ClienteController {
         });
     }
     inserirClienteNoHTML(cliente) {
-        const elementoP = document.createElement('p');
-        elementoP.textContent = cliente.toString();
+        this.quantClientes++;
+        const tr = document.createElement('tr');
+        const th = document.createElement('th');
+        let tbody = document.querySelector('#tabelinha');
+        let i = 0;
+        let array = cliente.toString();
+        console.log(array);
+        console.log(this.quantClientes.toString());
+        th.innerHTML = this.quantClientes.toString();
+        tr.append(th);
+        array.forEach(elemento => {
+            let td = document.createElement('td');
+            td.innerHTML = array[i];
+            tr.append(td);
+            i++;
+        });
         const botaoApagar = document.createElement('button');
         botaoApagar.textContent = 'X';
         botaoApagar.addEventListener('click', (event) => {
@@ -27,7 +42,7 @@ class ClienteController {
             this.clientes.remover(cliente.cpf);
             event.target.parentElement.remove();
         });
-        elementoP.appendChild(botaoApagar);
-        document.body.appendChild(elementoP);
+        tr.appendChild(botaoApagar);
+        tbody.appendChild(tr);
     }
 }

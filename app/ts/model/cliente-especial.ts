@@ -15,7 +15,4 @@ class ClienteEspecial extends Cliente{
         this._dependentes.splice(this._dependentes.findIndex(cliente => cliente.cpf === clienteCpf), 1);
     }
 
-    toString(): string {
-        return `Nome: ${this.nome} - Cpf: ${this.cpf} - Conta: ${this.conta}`
-    }
 }

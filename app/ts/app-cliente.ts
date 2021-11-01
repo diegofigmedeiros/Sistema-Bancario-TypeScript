@@ -1,6 +1,7 @@
 let clienteController = new ClienteController();
 clienteController.listar();
 
+/*
 const Cli_c1 = new Conta('1', 100);
 const Cli_p1 = new Poupanca('2', 100);
 const Cli_cb1 = new ContaBonificada('3', 0);
@@ -17,6 +18,7 @@ console.log(Cli_clientes.listar());
 console.log(Cli_clientes.pesquisar(142));
 Cli_clientes.remover(142);
 console.log(Cli_clientes.listar());
+*/
 
 
 

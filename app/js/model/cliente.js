@@ -23,6 +23,6 @@ class Cliente {
         this._conta = value;
     }
     toString() {
-        return `Nome: ${this.nome} - Cpf: ${this.cpf} - Conta: ${this.conta}`;
+        return [this.nome, this.cpf, this.conta.numero, this.conta.saldo];
     }
 }

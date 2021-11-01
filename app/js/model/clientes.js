@@ -1,6 +1,6 @@
 class Clientes {
     constructor() {
-        this._clientes = [];
+        this._clientes = new Array();
     }
     listar() {
         return this._clientes;
