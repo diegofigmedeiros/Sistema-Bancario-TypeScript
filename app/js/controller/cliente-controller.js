@@ -9,29 +9,34 @@ class ClienteController {
     }
     inserir(evento) {
         evento.preventDefault();
-        let novoCliente = new Cliente(this.inputNome.value, parseInt(this.inputCpf.value), new Conta(this.inputConta.value, parseFloat(this.inputSaldo.value)));
-        this.clientes.inserir(novoCliente);
-        this.inserirClienteNoHTML(novoCliente);
+        if (this.clientes.pesquisar(parseInt(this.inputCpf.value)) === undefined) {
+            let novoCliente = new Cliente(this.inputNome.value, parseInt(this.inputCpf.value), new Conta(this.inputConta.value, parseFloat(this.inputSaldo.value)));
+            this.clientes.inserir(novoCliente);
+            this.inserirClienteNoHTML(novoCliente);
+        }
+        else {
+            alert("Cliente ja está inserido na lista");
+        }
+        this.limpar();
     }
-    listar() {
-        this.clientes.listar().forEach(cliente => {
-            this.inserirClienteNoHTML(cliente);
-        });
+    limpar() {
+        this.inputNome.value = "";
+        this.inputCpf.value = "";
+        this.inputConta.value = "";
+        this.inputSaldo.value = "";
     }
     inserirClienteNoHTML(cliente) {
+        let i = 0;
         this.quantClientes++;
         const tr = document.createElement('tr');
         const th = document.createElement('th');
         let tbody = document.querySelector('#tabelinha');
-        let i = 0;
-        let array = cliente.toString();
-        console.log(array);
-        console.log(this.quantClientes.toString());
         th.innerHTML = this.quantClientes.toString();
         tr.append(th);
-        array.forEach(elemento => {
+        let dadosCliente = cliente.toString();
+        dadosCliente.forEach(() => {
             let td = document.createElement('td');
-            td.innerHTML = array[i];
+            td.innerHTML = dadosCliente[i];
             tr.append(td);
             i++;
         });
